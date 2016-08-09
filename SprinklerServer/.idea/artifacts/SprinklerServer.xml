@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SprinklerServer">
+    <output-path>$PROJECT_DIR$/dist</output-path>
+    <root id="archive" name="SprinklerServer.war">
+      <element id="artifact" artifact-name="SprinklerServer:war exploded" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/conf/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

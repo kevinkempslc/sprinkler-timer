@@ -1,0 +1,61 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 24, 2014, 5:09:23 PM
+    Author     : kkemp
+*/
+
+input {
+    font: 16px verdana, sans-serif;
+    color: #5a6bbe;  
+}
+
+label {
+    margin-right: 5px;
+}
+
+.zone_def {
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.zone_name {
+    height: 35px;
+    padding-left: 5px;
+}
+
+.zone_duration {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+}
+
+#zones_article {
+    float: left;
+    width: 938px;
+}
+
+#zones1-4 {
+    display: block;
+    //margin-left: 25px;
+    //margin-top: 50px;
+    position: relative;
+    top: 50px;
+    left: 20px;
+    height: 300px;
+}
+
+#zones5-8 {
+    display: block;
+    //margin-left: 25px;
+    position: relative;
+    top: -250px;
+    left: 480px;
+}
+
+#zone-buttons {
+    padding: 10px;
+}

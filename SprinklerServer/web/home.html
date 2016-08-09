@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Sprinkler Timer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Web page for controlling my sprinkler timer.">
+        <link rel="stylesheet" href="sprinklers.css">
+        <link rel="stylesheet" href="home.css">
+        <script type="text/javascript" src="ajaxgold.js"></script>
+        <script src="common.js"></script>
+        <script src="home.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <nav>
+                <ul>
+                    <li>Schedule</li>
+                    <li><a href="manual.html">Manual</a></li>
+                    <li><a href=zones.html>Zones</a></li>
+                </ul>
+            </nav>
+            <section>
+                <article id="program_article">
+                    <div class="titlebar">Program</div>
+                    <div class="article_wrapper" id="program_wrapper">
+                        <label id="pgm-btn_lbl" for="program_button">Program</label>
+                        <button id="program_button"></button><br/>
+                        <label id="run-btn-lbl" for="run_button">Run</label>
+                        <button id="run_button"></button><br/>
+                        <label id="starttm_lbl" for="starttime_box"> Start Time</label>
+                        <table id="starttm_field">
+                            <tr>
+                                <td><button class="spin" id="inc_hour">+</button></td>
+                                <td><button class="spin" id="inc_minute">+</button></td>
+                            </tr>
+                        <tr>
+                        <td><input readonly id="start_hour"></td>
+                        <td><input readonly id="start_minute"></td>
+                        </tr>
+                        <tr>
+                        <td><button class="spin" id="dec_hour">-</button></td>
+                        <td><button class="spin" id="dec_minute">-</button></td>
+                        </tr>
+                        </table>
+                        <div id="overlap"></div>
+                    </div>
+                </article>
+                <article id="days_article">
+                    <div class="titlebar">Days</div>
+                    <div class="article_wrapper">
+                        <div id="program_button_box">
+                            <div id="day_buttons">
+                                <label class="daymode"><input type="radio" name="days" id="dayofweek" value="dayofweek">Week</label>
+                                <label class="daymode"><input type="radio" name="days" id="evendays" value="evendays">Even</label>
+                                <label class="daymode"><input type="radio" name="days" id="odddays" value="odddays">Odd</label>
+                                <label class="daymode"><input type="radio" name="days" id="intervaldays" value="intervaldays">Interval</label>
+                            </div>
+                            <div id="day_params">
+                            <div id="daylist">
+                                <label class="ckbox"><input type="checkbox" name="day" id="sunday">Sunday</label>
+                                <label class="ckbox"><input type="checkbox" name="day" id="monday">Monday</label>
+                                <label class="ckbox"><input type="checkbox" name="day" id="tuesday">Tuesday</label>
+                                <label class="ckbox"><input type="checkbox" name="day" id="wednesday">Wednesday</label>
+                                <label class="ckbox"><input type="checkbox" name="day" id="thursday">Thursday</label>
+                                <label class="ckbox"><input type="checkbox" name="day" id="friday">Friday</label>
+                                <label class="ckbox"><input type="checkbox" name="day" id="saturday">Saturday</label>
+                            </div>
+                            <div id="interval_item">
+                                <label>Interval: </label>
+                                <button class="spin" id="dec_interval">-</button>
+                                <input readonly id="interval">
+                                <button class="spin" id="inc_interval">+</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article id="zones_article">
+                    <div class="titlebar">Zones</div>
+                    <div class="article_wrapper" id="zones_wrapper">
+                        <div class="ckbox"><input name="zone" type="checkbox" id="zone1" class="zonecb"><label class="zone_label" id="zonename1"></label></div>
+                        <div class="ckbox"><input name="zone" type="checkbox" id="zone2" class="zonecb"><label class="zone_label" id="zonename2"></label></div>
+                        <div class="ckbox"><input name="zone" type="checkbox" id="zone3" class="zonecb"><label class="zone_label" id="zonename3"></label></div>
+                        <div class="ckbox"><input name="zone" type="checkbox" id="zone4" class="zonecb"><label class="zone_label" id="zonename4"></label></div>
+                        <div class="ckbox"><input name="zone" type="checkbox" id="zone5" class="zonecb"><label class="zone_label" id="zonename5"></label></div>
+                        <div class="ckbox"><input name="zone" type="checkbox" id="zone6" class="zonecb"><label class="zone_label" id="zonename6"></label></div>
+                        <div class="ckbox"><input name="zone" type="checkbox" id="zone7" class="zonecb"><label class="zone_label" id="zonename7"></label></div>
+                        <div class="ckbox"><input name="zone" type="checkbox" id="zone8" class="zonecb"><label class="zone_label" id="zonename8"></label></div>
+                    </div>
+                </article>
+            </section>
+            <footer>
+                <h2 id='statusbar'></h2>
+                <h2 id='currenttime'></h2>
+            </footer>
+        </div>
+    </body>
+</html>

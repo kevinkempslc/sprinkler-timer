@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!--
+    Planned features
+
+    Show total program time.
+    Add System screen
+        Clear start times
+
+    Center login screen.
+    Sensors
+    Rain mode: Turns off for 24 hours.
+-->
+<html>
+    <head>
+        <title>Sprinkler Timer Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Login page for sprinkler timer.">
+        <link rel="stylesheet" href="sprinklers.css">
+        <style>
+            body {
+                text-align: center;
+                color: #5a6bbe;  
+                font: bold 14px verdana, sans-serif;
+            }
+            article {
+                display: inline-block;
+                background: none; 
+                border: 0px;
+                height: 550px;
+            }
+            fieldset {
+                display: inline-block;
+                background: none; 
+                font: bold 16px verdana, sans-serif;
+                margin-top: 50px;
+            }
+            button {
+                height: 80px;
+                width: 80px;
+                color: #5a6bbe;  
+                border-radius: 10px;
+                font: bold 24px verdana, sans-serif;
+            }
+
+        </style>
+        <script type="text/javascript" src="ajaxgold.js"></script>
+        <script src="common.js"></script>
+        <script src="login.js"></script>
+    </head>
+    <body>
+        <section>
+            <article>
+                
+                <fieldset><legend><b>Sprinkler Timer Login</b></legend>
+                    <input type="password" id="pwDisplay" readonly>
+                    <table>
+                        <tr>
+                            <td><button id="button7">7</button></td>
+                            <td><button id="button8">8</button></td>
+                            <td><button id="button9">9</button></td>
+                        </tr>
+                        <tr>
+                            <td><button id="button4">4</button></td>
+                            <td><button id="button5">5</button></td>
+                            <td><button id="button6">6</button></td>
+                        </tr>
+                        <tr>
+                            <td><button id="button1">1</button></td>
+                            <td><button id="button2">2</button></td>
+                            <td><button id="button3">3</button></td>
+                        </tr>
+                        <tr>
+                            <td><button id="buttonClear">C</button></td>
+                            <td><button id="button0">0</button></td>
+                            <td><button id=buttonSubmit>#</button></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </article>
+        </section>
+    </body>
+</html>

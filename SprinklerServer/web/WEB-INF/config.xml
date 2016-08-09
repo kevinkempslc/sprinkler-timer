@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<password>1234</password>
+    <sprinklerDaemonHost>localhost</sprinklerDaemonHost>
+    <sprinklerDaemonPort>9100</sprinklerDaemonPort>
+</config>

@@ -1,0 +1,133 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 24, 2014, 8:44:35 AM
+    Author     : kkemp
+*/
+
+.ckbox {
+    display: block;
+}
+
+.daymode {
+    display: inline-block;
+}
+
+.zone_buttons {
+    
+}
+
+.zone_label {
+
+}
+
+.zonecb {
+}
+
+#day_params {
+    margin-top: 20px;
+}
+
+#daylist {
+    margin-left: 120px;
+    display: none;
+}
+
+#interval_item {
+    margin-top: 50px;
+    margin-left: 60px;
+    display: none;
+}
+
+#day_buttons {
+    text-align: center;
+}
+
+#program_wrapper {
+   text-align: center;
+}
+
+#program_button, #run_button {
+    margin-bottom: 15px;
+}
+
+#program_article {
+    width: 200px;
+    float: left;
+}
+
+#days_article {
+    width: 400px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#zones_article {
+    float: left;
+    width: 313px;
+}
+
+#zones_wrapper {
+    margin-left: 110px;
+}
+
+#pgm-btn_lbl, #run-btn-lbl, #starttm_lbl {
+    display: block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+#start_hour, #start_minute, #interval {
+    text-align: center;
+    width: 50px;
+    height: 35px;
+    color: #5a6bbe;  
+    border-radius: 5px;
+    font: bold 16px verdana, sans-serif;
+}
+
+#starttm_field {
+    margin-left: 30px;
+}
+
+#start_hour {
+    display: inline-block;
+    position: relative;
+}
+
+#start_minute {
+    display: inline-block;
+    position: relative;
+}
+
+#inc_hour {
+    font: bold 20px verdana, sans-serif;
+}
+
+#dec_hour {
+    display: inline-block;
+    position: relative;
+    font: bold 20px verdana, sans-serif;
+}
+
+#inc_minute {
+    display: inline-block;
+    position: relative;
+    font: bold 20px verdana, sans-serif;
+}
+
+#dec_minute {
+    display: inline-block;
+    position: relative;
+    font: bold 20px verdana, sans-serif;
+}
+
+#overlap {
+    color: #FF0000;
+    position: relative;
+    top: 5px;
+}

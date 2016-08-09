@@ -1,0 +1,8 @@
+*.class
+.idea/workspace.xml
+out/*
+build/*
+dist/*
+
+# Package Files #
+*.jar

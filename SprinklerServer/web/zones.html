@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Sprinkler Timer Zone Setup</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="description" content="Web page for configurating sprinkler timer zones.">
+        <link rel="stylesheet" href="sprinklers.css">
+        <link rel="stylesheet" href="zones.css">
+        <script type="text/javascript" src="ajaxgold.js"></script>
+        <script src="common.js"></script>
+        <script src="zones.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <nav id="main_menu">
+                <ul>
+                    <li><a href=home.html>Schedule</a></li>
+                    <li><a href="manual.html">Manual</a></li>
+                    <li>Zones</li>
+                </ul>
+            </nav>
+            <section>
+                <article id="zones_article">
+                    <div class="titlebar">Zones</div>
+                    <div id="zone_buttons">
+                    <div id="zones1-4">
+                        <div class="zone_def"><label for="name1">Zone 1:</label><input placeholder="name" id="name1" class="zone_name" maxlength="18"><input readonly  id="duration1" class="zone_duration"><button class="spin" id="dec_zone1">-</button><button class="spin" id="inc_zone1">+</button></div>
+                        <div class="zone_def"><label for="name2">Zone 2:</label><input placeholder="name" id="name2" class="zone_name" maxlength="18"><input readonly  id="duration2" class="zone_duration"><button class="spin" id="dec_zone2">-</button><button class="spin" id="inc_zone2">+</button></div>
+                        <div class="zone_def"><label for="name3">Zone 3:</label><input placeholder="name" id="name3" class="zone_name" maxlength="18"><input readonly  id="duration3" class="zone_duration"><button class="spin" id="dec_zone3">-</button><button class="spin" id="inc_zone3">+</button></div>
+                        <div class="zone_def"><label for="name4">Zone 4:</label><input placeholder="name" id="name4" class="zone_name" maxlength="18"><input readonly  id="duration4" class="zone_duration"><button class="spin" id="dec_zone4">-</button><button class="spin" id="inc_zone4">+</button></div>
+                    </div>
+                    <div id="zones5-8">
+                        <div class="zone_def"><label for="name5">Zone 5:</label><input placeholder="name" id="name5" class="zone_name" maxlength="18"><input readonly  id="duration5" class="zone_duration"><button class="spin" id="dec_zone5">-</button><button class="spin" id="inc_zone5">+</button></div>
+                        <div class="zone_def"><label for="name6">Zone 6:</label><input placeholder="name" id="name6" class="zone_name" maxlength="18"><input readonly  id="duration6" class="zone_duration"><button class="spin" id="dec_zone6">-</button><button class="spin" id="inc_zone6">+</button></div>
+                        <div class="zone_def"><label for="name7">Zone 7:</label><input placeholder="name" id="name7" class="zone_name" maxlength="18"><input readonly  id="duration7" class="zone_duration"><button class="spin" id="dec_zone7">-</button><button class="spin" id="inc_zone7">+</button></div>
+                        <div class="zone_def"><label for="name8">Zone 8:</label><input placeholder="name" id="name8" class="zone_name" maxlength="18"><input readonly  id="duration8" class="zone_duration"><button class="spin" id="dec_zone8">-</button><button class="spin" id="inc_zone8">+</button></div>
+                    </div>
+                    </div>
+                </article>
+            </section>
+            <footer>
+                <h2 id='statusbar'></h2>
+                <h2 id='currenttime'></h2>
+            </footer>
+        </div>
+    </body>
+</html>

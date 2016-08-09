@@ -1,0 +1,117 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 24, 2013, 8:44:09 AM
+    Author     : kkemp
+*/
+
+body {
+    text-align: center;
+    color: #5a6bbe;  
+    font: bold 14px verdana, sans-serif;
+}
+
+article {
+    height: 390px;
+    display: inline-block;
+    border: 1px solid #5a6bbe;
+    background-color: #EEEEEE;
+}
+
+nav {
+    display: block;
+    background: #5a6bbe;
+    background: -webkit-linear-gradient(right, #7788dd, #5a6bbe); 
+    background: -moz-linear-gradient(right, #7788dd, #5a6bbe);
+    color: white;
+    padding: 1px;
+    margin-bottom: 5px;
+}
+
+nav li {
+    display: inline-block;
+    list-style: none;
+    padding: 3px;
+    font: bold 20px verdana, sans-serif;
+    background: #b1b5c9;
+    margin-left: 34px;
+    width: 200px;
+    text-align: center;
+    box-shadow: rgb(100,100,100) 3px 3px 5px;
+}
+
+h1 {
+    font: bold 22px verdana, sans-serif;
+}
+
+h2 {
+    font: bold 18px verdana, sans-serif;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+input[type="checkbox"],input[type="radio"] {
+    width: 25px;
+    height: 25px;
+    color: #5a6bbe;  
+    border-radius: 10px;
+    font: bold 16px verdana, sans-serif;
+}
+
+label {
+    font: bold 16px verdana, sans-serif;
+    color: #5a6bbe;
+}
+
+button {
+    width: 100px;
+    height: 35px;
+    color: #5a6bbe;  
+    border-radius: 10px;
+    font: bold 16px verdana, sans-serif;
+}
+
+.spin {
+    margin-left:5px;
+    margin-right: 5px;
+}
+
+.titlebar {
+    background: #5a6bbe;
+    color: white;
+    text-align: center;
+    font: bold 22px verdana, sans-serif;
+}
+
+.spin {
+    width: 35px;
+}
+
+.article_wrapper {
+    margin: 10px;
+}
+
+.ckbox {
+    margin-bottom: 10px;
+}
+
+#wrapper {
+    text-align: left;
+    width: 940px;
+    margin: 15px auto;
+}
+
+#currenttime {
+    display: block;
+    float: right;
+}
+
+#statusbar {
+    display: block;
+    float: left;
+}
