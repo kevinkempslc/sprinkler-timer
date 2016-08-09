@@ -1,5 +1,14 @@
 # sprinkler-timer
 
+Sprinkler timer program designed to run on a Raspberry Pi, using a C++ timer service and Java/Tomcat web front-end for control.
+
+## Requirements
+* Tomcat 6 (https://tomcat.apache.org/download-60.cgi)
+* Apache Thrift 0.9.3 (https://thrift.apache.org/)
+* Java (currently configured to use 8)
+
+## Getting started
+
 On the Raspberry Pi
 
 1. Install boost using `sudo apt-get install libboost1.55-all`
