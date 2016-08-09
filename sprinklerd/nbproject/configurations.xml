@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="90">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>ConfigFile.h</itemPath>
+      <itemPath>Connection.h</itemPath>
+      <itemPath>ConnectionManager.h</itemPath>
+      <itemPath>GPIO.h</itemPath>
+      <itemPath>HttpClient.h</itemPath>
+      <itemPath>MsgServer.h</itemPath>
+      <itemPath>Program.h</itemPath>
+      <itemPath>Reply.h</itemPath>
+      <itemPath>Request.h</itemPath>
+      <itemPath>RequestHandler.h</itemPath>
+      <itemPath>SendMail.h</itemPath>
+      <itemPath>SprinklerTimer.h</itemPath>
+      <itemPath>Utils.h</itemPath>
+      <itemPath>Zone.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>ConfigFile.cpp</itemPath>
+      <itemPath>Connection.cpp</itemPath>
+      <itemPath>ConnectionManager.cpp</itemPath>
+      <itemPath>GPIO.cpp</itemPath>
+      <itemPath>HttpClient.cpp</itemPath>
+      <itemPath>MsgServer.cpp</itemPath>
+      <itemPath>Program.cpp</itemPath>
+      <itemPath>Reply.cpp</itemPath>
+      <itemPath>Request.cpp</itemPath>
+      <itemPath>RequestHandler.cpp</itemPath>
+      <itemPath>SendMail.cpp</itemPath>
+      <itemPath>SprinklerTimer.cpp</itemPath>
+      <itemPath>Utils.cpp</itemPath>
+      <itemPath>Zone.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <itemPath>emailmsg.txt</itemPath>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sprinklerd</output>
+          <linkerLibItems>
+            <linkerLibLibItem>curl</linkerLibLibItem>
+            <linkerLibLibItem>boost_system</linkerLibLibItem>
+            <linkerLibLibItem>boost_thread</linkerLibLibItem>
+          </linkerLibItems>
+          <commandLine>-pthread</commandLine>
+        </linkerTool>
+      </compileType>
+      <item path="ConfigFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConfigFile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Connection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Connection.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConnectionManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConnectionManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GPIO.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GPIO.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HttpClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HttpClient.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MsgServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MsgServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Program.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Program.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Reply.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Reply.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Request.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Request.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RequestHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SendMail.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SendMail.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SprinklerTimer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SprinklerTimer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Zone.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Zone.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="emailmsg.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <stripSymbols>true</stripSymbols>
+          <commandlineTool>g++</commandlineTool>
+          <incDir>
+            <pElem>/usr/local/boost_1_54_0/include</pElem>
+          </incDir>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sprinklerd</output>
+          <stripSymbols>true</stripSymbols>
+          <commandlineTool>g++</commandlineTool>
+          <commandLine>-pthread -L/usr/local/boost_1_54_0/lib -lboost_thread -lboost_system</commandLine>
+        </linkerTool>
+      </compileType>
+      <item path="ConfigFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConfigFile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Connection.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Connection.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ConnectionManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ConnectionManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GPIO.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GPIO.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HttpClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HttpClient.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MsgServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MsgServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Program.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Program.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Reply.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Reply.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Request.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Request.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RequestHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SendMail.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SendMail.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SprinklerTimer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SprinklerTimer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Zone.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Zone.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="emailmsg.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

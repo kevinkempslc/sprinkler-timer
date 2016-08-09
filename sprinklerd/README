@@ -1,0 +1,63 @@
+
+On the Raspberry Pi
+
+1. Install boost using...
+	sudo apt-get install libboost1.50-all
+
+2. Create a link to the tomcat directory and name it /home/pi/tomcat.
+
+3. Create a link to the daemon directory and call it /home/pi/timer.
+
+4. Copy the rc.local and sprinklerd.conf files in the source directory to the /etc directory on the Pi.
+
+5. Notes on network setup...
+	a. On the router, reserve an IP address for the Pi.
+	b. Leave the Pi setup for using DHCP.
+	c. Configure the router to port forward port 8080 to the Pi.
+
+
+6. Install Tomcat
+	This is easy, just download tomcat to the raspberry pi. You can put the SprinklerTimer.war file in the tomcat webapps directory and 
+	tomcat will automatically deploy it. You also need to some roles and a user to [tomcat folder]/conf/tomcat-users.xml. In the <tomcat-users>
+	element, add...
+
+	<role rolename="manager-gui"/><user username="admin" password="mypassword" roles="manager-gui"/>
+
+	Replace "mypassword" with your own.
+
+	To run tomcat, execute [tomcat folder]/bin/startup.sh.
+
+	To stop tomcat, execute [tomcat folder]/bin/shutdown.sh.
+
+7. To install thrift:
+
+    a. Copy the thrift tarball to the pi and untar
+    b. Install required packages (see https://thrift.apache.org/docs/install/debian)
+        I. Run the following command
+           # sudo apt-get install automake bison flex g++ git libboost1.55-all-dev libevent-dev libssl-dev libtool make pkg-config
+        II. I ignored the optional packages
+    c. Build thrift (see https://thrift.apache.org/docs/BuildingFromSource)
+        I. thrift-0.9.3 did not appear to have a boostrap.sh script, so I skipped that.
+        II. Run ./configure
+            Didn't need anything else, I don't think
+        III. Run make
+            A. Ran into some problems with the make process in the tests; it choked on some things. After being unable to make it work
+               for some time, I moved on and the make install seemed to work fine.
+        IV. Run make install
+            Should put the thrift libraries in /usr/local/lib
+    d. Run $ sudo ldconfig
+       Updates the system with the newly installed libraries
+       
+8. Build the thrift libraries for Java
+   
+    a. Navigate to <thrift extraction directory>/lib/java
+    b. If you have ant, run ant.
+    c. If you're using IntelliJ community edition:
+        I. Open IntelliJ
+        II. File->New->Project from Existing Sources...
+        III. Navigate to the thrift java directory from a.
+        IV. Select "Create project from existing sources" radio button
+        V. Name it whatever you want (I went with ThriftJava)
+        VI. After project creation, go to View->Tool Windows->Ant build
+        VII. Click the + button and add the build.xml file in the thrift directory
+        VIII. Hit the play button to run the build
