@@ -10,6 +10,8 @@
 #include <curl/curl.h>
 #include <assert.h>
 
+#include <iostream>
+
 /* This is a simple example showing how to send mail using libcurl's SMTP
  * capabilities. It builds on the smtp-mail.c example to add authentication
  * and, more importantly, transport security to protect the authentication
@@ -18,15 +20,11 @@
  * Note that this example requires libcurl 7.20.0 or above.
  */
 
-#define FROM    "<from@example.com>"
-#define TO      "<to@example.com>"
-//#define CC      "<cc@example.com>"
-
 static const char *payload_text_template[] = {
     "Date: %s\r\n",
-    "To: " TO "\r\n",
-    "From: " FROM "(Sprinkler Timer)\r\n",
-    /*"Cc: " CC "(CC Person)\r\n",*/
+    "To: %s\r\n",
+    "From: %s(Sprinkler Timer)\r\n",
+    "Cc: %s\r\n",
     "Subject: Sprinkler System: %s\r\n",
     "\r\n", /* empty line to divide headers from body, see RFC5322 */
     "%s\r\n",
@@ -35,11 +33,23 @@ static const char *payload_text_template[] = {
 
 static char payload_text[8][100];
 
-SendMail::SendMail()
+SendMail::SendMail(std::string username, std::string password, std::string url, std::string toEmail, std::string fromEmail, std::string ccEmail) :
+    username(username),
+    password(password),
+    url(url),
+    toEmail(toEmail),
+    fromEmail(fromEmail),
+    ccEmail(ccEmail)
 {
 }
 
-SendMail::SendMail(const SendMail& orig)
+SendMail::SendMail(const SendMail& orig) :
+    username(orig.username),
+    password(orig.password),
+    url(orig.url),
+    toEmail(orig.toEmail),
+    fromEmail(orig.fromEmail),
+    ccEmail(orig.ccEmail)
 {
 }
 
@@ -79,6 +89,15 @@ static size_t payload_source(void *ptr, size_t size, size_t nmemb, void *userp)
 int SendMail::send(const char* subject, const char *msg)
 {
 //#if 0
+
+    // These parameters are critical; if they weren't given to us, we can't proceed.
+    if(username.empty() || password.empty() || toEmail.empty() || url.empty())
+    {
+        std::cout << "One or more critical email parameters (emailUsername, emailPassword, emailURL, emailTo) are missing from the config file; unable to send email. "
+                  << "subject: " << subject << "message: " << msg << std::endl;
+        return -1;
+    }
+
     CURL *curl;
     CURLcode res = CURLE_OK;
     struct curl_slist *recipients = NULL;
@@ -88,27 +107,35 @@ int SendMail::send(const char* subject, const char *msg)
     time_t now = time(0);
     tm* localtm = localtime(&now);
     strftime (date, 80,"%a, %d %b %Y %T %z",localtm);
-    sprintf(payload_text[0], (const char*) payload_text_template[0], date);
-    // NOTE: This count limit for i needs to be adjusted according to how many
-    // elements are in payload_text_template.
-    for (int i = 1; i <= 4; i++)
-        strcpy(payload_text[i], payload_text_template[i]);
-    sprintf(payload_text[4], payload_text_template[4], subject);
-    sprintf(payload_text[6], payload_text_template[6], msg);
+
+    // Ideally we wouldn't be hardcoding the individual text template indices here, but
+    // right now we're just trying to get it to work. We'll make an improvement pass later.
+    int payloadTextIndex = 0;
+    sprintf(payload_text[payloadTextIndex++], (const char*) payload_text_template[0], date);
+    sprintf(payload_text[payloadTextIndex++], payload_text_template[1], toEmail.c_str());
+    sprintf(payload_text[payloadTextIndex++], payload_text_template[2], fromEmail.c_str());
+    // payloadTextIndex should now be 3
+    if(!ccEmail.empty())
+        sprintf(payload_text[payloadTextIndex++], payload_text_template[3], ccEmail.c_str());
+    // If we were given a ccEmail, payloadTextIndex will now be 4; if not, 3.
+    sprintf(payload_text[payloadTextIndex++], payload_text_template[4], subject);
+    strcpy(payload_text[payloadTextIndex++], payload_text_template[5]);
+    sprintf(payload_text[payloadTextIndex++], payload_text_template[6], msg);
+    strcpy(payload_text[payloadTextIndex++], payload_text_template[7]);
     upload_ctx.lines_read = 0;
 
     curl = curl_easy_init();
     if (curl)
     {
         /* Set username and password */
-        curl_easy_setopt(curl, CURLOPT_USERNAME, "username");
-        curl_easy_setopt(curl, CURLOPT_PASSWORD, "dummy");
+        curl_easy_setopt(curl, CURLOPT_USERNAME, username.c_str());
+        curl_easy_setopt(curl, CURLOPT_PASSWORD, password.c_str());
 
         /* This is the URL for your mailserver. Note the use of port 587 here,
          * instead of the normal SMTP port (25). Port 587 is commonly used for
          * secure mail submission (see RFC4403), but you should use whatever
          * matches your server configuration. */
-        curl_easy_setopt(curl, CURLOPT_URL, "hostname");
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
         /* In this example, we'll start with a plain text connection, and upgrade
          * to Transport Layer Security (TLS) using the STARTTLS command. Be careful
@@ -136,13 +163,17 @@ int SendMail::send(const char* subject, const char *msg)
          * to the address in the reverse-path which triggered them. Otherwise, they
          * could cause an endless loop. See RFC 5321 Section 4.5.5 for more details.
          */
-        curl_easy_setopt(curl, CURLOPT_MAIL_FROM, FROM);
+        curl_easy_setopt(curl, CURLOPT_MAIL_FROM, fromEmail.c_str());
 
         /* Add two recipients, in this particular case they correspond to the
          * To: and Cc: addressees in the header, but they could be any kind of
          * recipient. */
-        recipients = curl_slist_append(recipients, TO);
-        //recipients = curl_slist_append(recipients, CC);
+        recipients = curl_slist_append(recipients, toEmail.c_str());
+
+        // Append the CC email if we were given one
+        if(!ccEmail.empty())
+            recipients = curl_slist_append(recipients, ccEmail.c_str());
+
         curl_easy_setopt(curl, CURLOPT_MAIL_RCPT, recipients);
 
         /* We're using a callback function to specify the payload (the headers and

@@ -45,7 +45,14 @@ namespace SprinklerTimeNS
     SprinklerTimer::SprinklerTimer()
     : timerThread(NULL), getTimeThread(NULL), currentProgram(0)
     {
-        sm = new SendMail();
+        std::string emailUsername = ConfigFile::getValue("emailUsername", "");
+        std::string emailPassword = ConfigFile::getValue("emailPassword", "");
+        std::string emailURL = ConfigFile::getValue("emailURL", "");
+        std::string emailTo = ConfigFile::getValue("emailTo", "");
+        std::string emailFrom = ConfigFile::getValue("emailFrom", "");
+        std::string emailCC = ConfigFile::getValue("emailCC", "");
+
+        sm = new SendMail(emailUsername, emailPassword, emailURL, emailTo, emailFrom, emailCC);
         
         // Create the Program objects
         for (unsigned int i = 0; i < NUMPROGRAMS; i++)
@@ -78,7 +85,7 @@ namespace SprinklerTimeNS
             boost::system::error_code ec = e.code();
         }
         
-        //sendStartupEMail();
+        sendStartupEMail();
     }
 
     SprinklerTimer::~SprinklerTimer()
