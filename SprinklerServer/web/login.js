@@ -117,6 +117,10 @@ function loginHandler(text)
 {
     if (text === "ok")
         window.location = "home.html";
+    else
+    {
+        document.getElementById("errorMessage").innerHTML = text;
+    }
 }
 addEventListener("load", initialize);
    

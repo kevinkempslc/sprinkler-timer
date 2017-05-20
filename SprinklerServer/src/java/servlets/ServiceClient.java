@@ -10,7 +10,6 @@ import SprinklerServer.thrift.*;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.transport.TSocket;
-import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TTransportException;
 
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class ServiceClient
     final int NUMPROGRAMS = 4;
 
 	protected SprinklerService.Client client;
-	protected TTransport transport;
+	protected TSocket transport;
 
 	protected String hostname;
 	protected int port;
@@ -52,6 +51,7 @@ public class ServiceClient
         {
 			Logger.getLogger(ServiceClient.class.getName()).log(Level.INFO, "Starting connection to " + hostname + ":" + port);
 			transport = new TSocket(hostname, port);
+			transport.setTimeout(1000);
 			transport.open();
 			TBinaryProtocol binaryProtocol = new TBinaryProtocol(transport);
 			client = new SprinklerService.Client(binaryProtocol);

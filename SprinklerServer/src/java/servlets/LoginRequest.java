@@ -54,14 +54,21 @@ public class LoginRequest extends HttpServlet
             {
                 if (client.open())
                 {
-                    client.checkSession(true);
-                    client.close();    
+					System.out.println("Successfully opened client");
+                    boolean success = client.checkSession(true);
+					System.out.println("Retrieved check session? " + success);
+                    client.close();
+					System.out.println("Closed client, sending okay to javascript");
                     PrintWriter out = response.getWriter();
                     out.print("ok");
                     out.close();
                     
                     return;
                 }
+				else
+				{
+					System.out.println("Unable to open client");
+				}
             }
             PrintWriter out = response.getWriter();
             out.println("error");
