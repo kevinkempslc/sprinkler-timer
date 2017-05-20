@@ -7,11 +7,12 @@
 #include <errno.h>
 #include <unistd.h>
 #include <string.h>
+#include <syslog.h>
 #include "Utils.h"
 #include "thrift/SprinklerService.h"
 #include "thrift/SprinklerServiceHandler.h"
 #include <thrift/protocol/TBinaryProtocol.h>
-#include <thrift/server/TSimpleServer.h>
+#include <thrift/server/TThreadedServer.h>
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TBufferTransports.h>
 #include <boost/shared_ptr.hpp>
@@ -30,15 +31,13 @@ using namespace std;
 int main(int argc, char *argv[]) 
 {
     //Set our Logging Mask and open the Log
-//    setlogmask(LOG_UPTO(LOG_NOTICE));
+//    setlogmask(LOG_UPTO(LOG_DEBUG));
 //    openlog(DAEMON_NAME, LOG_CONS | LOG_NDELAY | LOG_PERROR | LOG_PID, LOG_USER);
-//
-//    syslog(LOG_INFO, "Entering Daemon");
-//    closelog ();
 
 // TODO: Change this to if 1 when ready to daemonize.
 #if 0
     
+    syslog(LOG_INFO, "Starting sprinklerd daemon");
     pid_t pid, sid;
 
    //Fork the Parent Process
@@ -82,19 +81,30 @@ int main(int argc, char *argv[])
     //----------------
 
     printf("Constructing server...\n");
+//    syslog(LOG_NOTICE, "Constructing server");
     SprinklerTimeNS::SprinklerTimer *timer = new SprinklerTimeNS::SprinklerTimer();
     
     int port = 9100;
     shared_ptr<SprinklerTimeNS::SprinklerServiceHandler> handler(new SprinklerTimeNS::SprinklerServiceHandler(timer));
     shared_ptr<TProcessor> processor(new SprinklerServiceProcessor(handler));
-    shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
+    shared_ptr<TServerSocket> serverSocket(new TServerSocket(port));
+    // We seem to be having problems with client connections hanging around for a lot longer than expected; as such,
+    // we need to disconnect them if they fail their heartbeat.
+    serverSocket->setKeepAlive(true);
+
+    // Convert the TServerSocket shared pointer to a TServerTransport shared pointer, because that's what we'll need
+    // in the Thrift server, and it can't nicely convert for us when we're using a shared pointer.
+    shared_ptr<TServerTransport> serverTransport(boost::static_pointer_cast<TServerTransport>(serverSocket));
+
     shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
     shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
 
     printf("Starting the server...\n");
-    TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
+//    syslog(LOG_NOTICE, "Starting thrift server");
+    TThreadedServer server(processor, serverTransport, transportFactory, protocolFactory);
     server.serve();
     printf("Done.\n");
 
+//    closelog();
     return 0;
 }

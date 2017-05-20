@@ -6,6 +6,7 @@
  */
 
 #include "SprinklerServiceHandler.h"
+#include <syslog.h>
 
 using namespace  ::SprinklerServerThrift;
 
@@ -36,6 +37,7 @@ bool SprinklerServiceHandler::shutdown()
 
 bool SprinklerServiceHandler::checkSession(const bool startSession)
 {
+    //syslog(LOG_DEBUG, "Received check session request");
     return sprinklerTimer->checkSession(startSession);
 }
 
@@ -67,17 +69,29 @@ void SprinklerServiceHandler::selectProgram(::SprinklerServerThrift::BulkData& _
 
 void SprinklerServiceHandler::sendAll(::SprinklerServerThrift::BulkData& _return)
 {
+    //syslog(LOG_DEBUG, "Received sendAll request");
     if(sprinklerTimer->checkSession(false))
     {
+        //syslog(LOG_DEBUG, "sendAll: successful session check");
         _return = sprinklerTimer->sendAll();
+    }
+    else
+    {
+        //syslog(LOG_DEBUG, "sendAll: unsuccessful session check!");
     }
 }
 
 void SprinklerServiceHandler::sendUpdate(::SprinklerServerThrift::UpdateData& _return)
 {
+    //syslog(LOG_DEBUG, "Received sendUpdate request");
     if(sprinklerTimer->checkSession(false))
     {
+        //syslog(LOG_DEBUG, "sendUpdate: successful session check");
         _return = sprinklerTimer->sendUpdate();
+    }
+    else
+    {
+        //syslog(LOG_DEBUG, "sendUpdate: unsuccessful session check!");
     }
 }
 

@@ -114,6 +114,9 @@ namespace SprinklerTimeNS
         theTime = time((time_t*) 0);
         struct tm *tminfo = localtime(&theTime);
 
+        //std::string logMessage = std::string("Checking session, got time; begin == 0? ") + (begin == 0 ? "true" : "false");
+        //syslog(LOG_DEBUG, logMessage.c_str());
+
         int currentTime = tminfo->tm_hour * 60 + tminfo->tm_min;
                 
         if (begin != 0)
@@ -124,6 +127,7 @@ namespace SprinklerTimeNS
         {
             if (currentTime - loginTime > 30)
             {
+                //syslog(LOG_DEBUG, "Check session: login time greater than 30 minutes, returning false");
                 loginTime = 0;
                 return false;
             }
@@ -132,6 +136,8 @@ namespace SprinklerTimeNS
                 loginTime = currentTime;
             }
         }
+
+        //syslog(LOG_DEBUG, "Returning successful session check");
         
         return true;
     }
