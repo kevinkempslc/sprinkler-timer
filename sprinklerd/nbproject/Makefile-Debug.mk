@@ -36,19 +36,17 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/ConfigFile.o \
-	${OBJECTDIR}/Connection.o \
-	${OBJECTDIR}/ConnectionManager.o \
 	${OBJECTDIR}/GPIO.o \
 	${OBJECTDIR}/HttpClient.o \
-	${OBJECTDIR}/MsgServer.o \
 	${OBJECTDIR}/Program.o \
-	${OBJECTDIR}/Reply.o \
-	${OBJECTDIR}/Request.o \
-	${OBJECTDIR}/RequestHandler.o \
 	${OBJECTDIR}/SendMail.o \
 	${OBJECTDIR}/SprinklerTimer.o \
 	${OBJECTDIR}/Utils.o \
 	${OBJECTDIR}/Zone.o \
+    ${OBJECTDIR}/SprinklerService.o \
+	${OBJECTDIR}/SprinklerServiceHandler.o \
+	${OBJECTDIR}/SprinklerServer_constants.o \
+	${OBJECTDIR}/SprinklerServer_types.o \
 	${OBJECTDIR}/main.o
 
 
@@ -74,22 +72,12 @@ LDLIBSOPTIONS=-lcurl -lboost_system -lboost_thread
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sprinklerd: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sprinklerd ${OBJECTFILES} ${LDLIBSOPTIONS} -pthread
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sprinklerd ${OBJECTFILES} ${LDLIBSOPTIONS} -pthread -L/usr/lib/arm-linux-gnueabihf/ -L/usr/local/lib -lthrift -lboost_thread -lboost_system
 
 ${OBJECTDIR}/ConfigFile.o: ConfigFile.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ConfigFile.o ConfigFile.cpp
-
-${OBJECTDIR}/Connection.o: Connection.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Connection.o Connection.cpp
-
-${OBJECTDIR}/ConnectionManager.o: ConnectionManager.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ConnectionManager.o ConnectionManager.cpp
 
 ${OBJECTDIR}/GPIO.o: GPIO.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -101,30 +89,10 @@ ${OBJECTDIR}/HttpClient.o: HttpClient.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HttpClient.o HttpClient.cpp
 
-${OBJECTDIR}/MsgServer.o: MsgServer.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MsgServer.o MsgServer.cpp
-
 ${OBJECTDIR}/Program.o: Program.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Program.o Program.cpp
-
-${OBJECTDIR}/Reply.o: Reply.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Reply.o Reply.cpp
-
-${OBJECTDIR}/Request.o: Request.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Request.o Request.cpp
-
-${OBJECTDIR}/RequestHandler.o: RequestHandler.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RequestHandler.o RequestHandler.cpp
 
 ${OBJECTDIR}/SendMail.o: SendMail.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -149,7 +117,27 @@ ${OBJECTDIR}/Zone.o: Zone.cpp
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -I./ -Ithrift -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/SprinklerService.o: thrift/SprinklerService.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	${COMPILE.cc} -g -I/usr/local/include/thrift -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SprinklerService.o thrift/SprinklerService.cpp
+
+${OBJECTDIR}/SprinklerServiceHandler.o: thrift/SprinklerServiceHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/thrift -I./ -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SprinklerServiceHandler.o thrift/SprinklerServiceHandler.cpp
+
+${OBJECTDIR}/SprinklerServer_constants.o: thrift/SprinklerServer_constants.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/thrift -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SprinklerServer_constants.o thrift/SprinklerServer_constants.cpp
+
+${OBJECTDIR}/SprinklerServer_types.o: thrift/SprinklerServer_types.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/local/include/thrift -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SprinklerServer_types.o thrift/SprinklerServer_types.cpp
 
 # Subprojects
 .build-subprojects:
